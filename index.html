@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -17,7 +17,7 @@
 
 html,body{
   height:100%;
-  background:#000;
+  background:black;
   overflow:hidden;
 }
 
@@ -93,25 +93,11 @@ nav a{
   inset:0;
   background:rgba(0,0,0,.72);
 }
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-.hero h1,
-.hero p{
-  opacity:0;
-  transform:translateY(40px);
-}
-.hero.animate h1{
-  animation:textUp 1.6s ease forwards;
-}
-.hero.animate p{
-  animation:textUp 1.6s ease forwards;
-  animation-delay:.35s;
-}
-@keyframes textUp{
-  to{opacity:1;transform:translateY(0)}
-}
+.hero-content{position:relative;z-index:2;}
+.hero h1,.hero p{opacity:0;transform:translateY(40px);}
+.hero.animate h1{animation:textUp 1.6s ease forwards;}
+.hero.animate p{animation:textUp 1.6s ease forwards;animation-delay:.35s;}
+@keyframes textUp{to{opacity:1;transform:translateY(0)}}
 .hero h1{font-size:64px;font-weight:600}
 .hero p{margin-top:12px;font-size:16px;opacity:.85}
 
@@ -127,7 +113,7 @@ section{
 /* ================= CARD ================= */
 .card{
   background:#fff;
-  color:#000;
+  color:#5a5858;
   max-width:900px;
   padding:60px;
   border-radius:16px;
@@ -137,319 +123,34 @@ section{
   opacity:0;
   transition:.6s ease;
 }
-.card.reveal{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-.card h2{
-  font-size:42px;
-  margin-bottom:20px;
-}
-.card p{
-  max-width:800px;
-  margin:auto;
-  color:#555;
-  line-height:1.7;
+.card.reveal{opacity:1;transform:translateY(0) scale(1);}
+h2{
+  color: #000;
 }
 
-/* ===== WhatsApp Button ===== */
+/* ================= WHATSAPP BUTTON (UPDATED) ================= */
 .whatsapp-btn{
   display:inline-flex;
   align-items:center;
-  gap:10px;
-  margin-top:30px;
-  padding:14px 26px;
-  background:#25D366;
-  color:#000;
-  text-decoration:none;
-  font-weight:500;
-  border-radius:10px;
-  transition:.3s ease;
-}
-
-/* ================= FOOTER ================= */
-.footer{
-  background:#000;
-  height:100vh;
-  position:relative;
-}
-.footer-logo{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-.footer-logo img{
-  width:70%;
-  max-width:900px;
-  opacity:.15;
-}
-.footer::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.7);
-}
-.footer-content{
-  position:relative;
-  z-index:2;
-  height:100%;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding-bottom:80px;
-  color:#fff;
-}
-.socials{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  margin-bottom:30px;
-}
-.footer-links{
-  display:flex;
-  justify-content:center;
-  gap:40px;
-}
-.socials a{
-  color:#fff;
-  font-size:22px;
-  text-decoration:none;
-}
-
-/* ================= CALL BOT ================= */
-.call-bot{
-  position:fixed;
-  bottom:25px;
-  right:25px;
-  z-index:9000;
-}
-.call-main{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:#25D366;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:24px;
-  cursor:pointer;
-}
-.call-menu{
-  position:absolute;
-  bottom:75px;
-  right:0;
-  display:flex;
-  flex-direction:column;
   gap:12px;
-  opacity:0;
-  pointer-events:none;
-  transition:.3s ease;
-}
-.call-menu a{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
+  margin:40px auto 0;
+  padding:16px 36px;
+  background:#bfe67b;           /* soft light green */
+  color:#000;
   font-size:20px;
-  text-decoration:none;
-}
-.call-menu a.phone{background:#000}
-.call-menu a.insta{background:#E1306C}
-.call-menu a.whatsapp{background:#25D366}
-.call-bot.active .call-menu{
-  opacity:1;
-  pointer-events:auto;
-}
-
-@media(max-width:768px){
-  .hero h1{font-size:38px}
-  section{padding:40px}
-  .card{padding:40px}
-}
-</style>
-</head>
-
-<body>
-<!DOCTYPE html> 
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tattoo Studio | Vision of Professional</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Poppins, Arial, sans-serif;
-}
-
-html,body{
-  height:100%;
-  background:#000;
-  overflow:hidden;
-}
-
-/* ================= INTRO ================= */
-.intro{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.intro img{
-  width:70%;
-  max-width:900px;
-  opacity:0;
-  animation:introFade 3.5s ease forwards;
-}
-@keyframes introFade{
-  0%{opacity:0}
-  30%{opacity:1}
-  70%{opacity:1}
-  100%{opacity:0}
-}
-.intro.hide{display:none}
-
-/* ================= NAV ================= */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:70px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:40px;
-}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-size:15px;
-  opacity:.9;
-}
-
-/* ================= HERO ================= */
-.hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-  overflow:hidden;
-}
-.hero video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.72);
-}
-.hero-content{
-  position:relative;
-  z-index:2;
-}
-.hero h1,
-.hero p{
-  opacity:0;
-  transform:translateY(40px);
-}
-.hero.animate h1{
-  animation:textUp 1.6s ease forwards;
-}
-.hero.animate p{
-  animation:textUp 1.6s ease forwards;
-  animation-delay:.35s;
-}
-@keyframes textUp{
-  to{opacity:1;transform:translateY(0)}
-}
-.hero h1{font-size:64px;font-weight:600}
-.hero p{margin-top:12px;font-size:16px;opacity:.85}
-
-/* ================= SECTIONS ================= */
-section{
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px;
-}
-
-/* ================= CARD ================= */
-.card{
-  background:#fff;
-  color:#000;
-  max-width:900px;
-  padding:60px;
-  border-radius:16px;
-  text-align:center;
-  box-shadow:0 30px 80px rgba(0,0,0,.25);
-  transform:translateY(60px) scale(.96);
-  opacity:0;
-  transition:.6s ease;
-}
-.card.reveal{
-  opacity:1;
-  transform:translateY(0) scale(1);
-}
-.card h2{
-  font-size:42px;
-  margin-bottom:20px;
-}
-.card p{
-  max-width:800px;
-  margin:auto;
-  color:#555;
-  line-height:1.7;
-}
-
-/* ===== WhatsApp Button ===== */
-.whatsapp-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  margin-top:30px;
-  padding:14px 26px;
-  background:#25D366;
-  color:#000;
-  text-decoration:none;
   font-weight:500;
-  border-radius:10px;
+  border-radius:14px;
+  text-decoration:none;
   transition:.3s ease;
 }
+
 .whatsapp-btn i{
-  font-size:18px;
+  font-size:22px;
 }
+
 .whatsapp-btn:hover{
-  transform:translateY(-3px);
-  box-shadow:0 15px 35px rgba(37,211,102,.45);
+  transform:translateY(-2px);
+  box-shadow:0 12px 30px rgba(0,0,0,.2);
 }
 
 /* ================= GALLERY ================= */
@@ -461,26 +162,40 @@ section{
 .gallery-title{
   color:#fff;
   font-size:46px;
-  font-weight:600;
   margin-bottom:40px;
-  opacity:0;
-  transform:translateY(30px);
-}
-.gallery.reveal .gallery-title{
-  animation:textUp 1.2s ease forwards;
 }
 .gallery-track{
   display:flex;
   gap:30px;
-  animation:scrollGallery 35s linear infinite;
+  animation:scrollGallery 18s linear infinite;
+}
+.gallery.paused .gallery-track{
+  animation-play-state:paused;
 }
 .gallery img{
   height:70vh;
   border-radius:12px;
+  cursor:pointer;
 }
 @keyframes scrollGallery{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
+}
+
+/* ================= IMAGE POPUP ================= */
+.image-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+.image-popup img{
+  max-width:95%;
+  max-height:95%;
+  border-radius:12px;
 }
 
 /* ================= FOOTER ================= */
@@ -515,7 +230,7 @@ section{
   flex-direction:column;
   justify-content:flex-end;
   padding-bottom:80px;
-  color:#fff;
+  color:#f3efef;
 }
 .socials{
   display:flex;
@@ -523,6 +238,7 @@ section{
   gap:30px;
   margin-bottom:30px;
 }
+.socials a{color:#fff;font-size:22px;}
 .footer-links{
   display:flex;
   justify-content:center;
@@ -568,7 +284,6 @@ section{
   justify-content:center;
   color:#fff;
   font-size:20px;
-  text-decoration:none;
 }
 .call-menu a.phone{background:#000}
 .call-menu a.insta{background:#E1306C}
@@ -579,16 +294,17 @@ section{
 }
 
 @media(max-width:768px){
-  .hero h1{font-size:38px}
+  .hero h1{font-size:36px}
   section{padding:40px}
-  .card{padding:40px}
-  .gallery-title{font-size:34px}
+  .gallery img{height:55vh}
+  .whatsapp-btn{font-size:18px;padding:14px 28px;}
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
 <div class="intro" id="intro">
   <img src="footer-bg.png.jpeg">
 </div>
@@ -640,18 +356,16 @@ Using high-quality inks and modern techniques, each piece is crafted with care a
 Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session.
 This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
 
-    <!-- ✅ BOOK ON WHATSAPP BUTTON -->
+    <!-- UPDATED BUTTON -->
     <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
-      <i class="fab fa-whatsapp"></i> Book on WhatsApp
+      <i class="fab fa-whatsapp"></i> Book on Whatsapp
     </a>
   </div>
 </section>
-
 <footer class="footer">
   <div class="footer-logo">
     <img src="footer-bg.png.jpeg">
   </div>
-
   <div class="footer-content">
     <div class="socials">
       <!-- ✅ REQUIRED CHANGES ONLY -->
@@ -676,6 +390,12 @@ This is not just the start of a journey — it’s the foundation of something e
     </div>
   </div>
 </footer>
+<!-- IMAGE POPUP -->
+<div class="image-popup" id="imagePopup">
+  <img id="popupImg">
+</div>
+
+<!-- CALL BOT -->
 <div class="call-bot" id="callBot">
   <div class="call-menu">
     <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
@@ -687,25 +407,41 @@ This is not just the start of a journey — it’s the foundation of something e
 
 <script>
 setTimeout(()=>{
-  document.getElementById("intro").classList.add("hide");
+  intro.classList.add("hide");
   document.body.style.overflow="auto";
   document.querySelector(".hero").classList.add("animate");
 },3500);
 
+/* Reveal */
 const revealItems=document.querySelectorAll(".reveal-on-scroll");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add("reveal");
-    }
+    if(entry.isIntersecting) entry.target.classList.add("reveal");
   });
 },{threshold:.4});
-revealItems.forEach(item=>observer.observe(item));
+revealItems.forEach(i=>observer.observe(i));
 
-document.getElementById("callBot").onclick=()=>{
-  document.getElementById("callBot").classList.toggle("active");
+/* Gallery popup */
+const gallery=document.querySelector(".gallery");
+const imgs=document.querySelectorAll(".gallery img");
+const popup=document.getElementById("imagePopup");
+const popupImg=document.getElementById("popupImg");
+
+imgs.forEach(img=>{
+  img.onclick=()=>{
+    gallery.classList.add("paused");
+    popup.style.display="flex";
+    popupImg.src=img.src;
+  }
+});
+popup.onclick=()=>{
+  popup.style.display="none";
+  gallery.classList.remove("paused");
 };
+
+/* Call bot */
+callBot.onclick=()=>callBot.classList.toggle("active");
 </script>
 
 </body>
-</html> 
+</html>
