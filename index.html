@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sapphire Inks | Tattoo Studio</title>
+    <title>Tattoo Studio | Vision of Professional</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- 1. GLOBAL RESET --- */
+        /* --- RESET & BASIC --- */
         * {
             margin: 0;
             padding: 0;
@@ -21,15 +21,11 @@
             font-family: 'Poppins', sans-serif;
             background: black;
             color: white;
-            overflow-x: hidden;
+            /* Prevent scrolling initially (handled by JS) */
+            overflow: hidden; 
         }
 
-        /* FIX: Ensures icons don't show as squares if font-weight conflicts occur */
-        .fa, .fas, .fab, .far {
-            font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
-        }
-
-        /* --- 2. INTRO LOADER --- */
+        /* --- INTRO ANIMATION --- */
         .intro {
             position: fixed;
             inset: 0;
@@ -37,7 +33,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            /* Z-Index must be higher than FAB (10000) and Popup (11000) strictly during load */
+            z-index: 20000; 
         }
         .intro img {
             width: 70%;
@@ -46,26 +43,25 @@
             animation: introFade 3.5s ease forwards;
         }
         @keyframes introFade {
-            0% { opacity: 0; }
-            30% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { opacity: 0; }
+            0% { opacity: 0; transform: scale(0.9); }
+            30% { opacity: 1; transform: scale(1); }
+            70% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.1); }
         }
         .intro.hide { display: none; }
 
-        /* --- 3. NAVIGATION (FIXED FOR THREE LINES) --- */
-        /* navbar-dark makes the 3 lines WHITE automatically */
+        /* --- NAVIGATION --- */
         .navbar {
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             padding: 15px 0;
             transition: all 0.3s;
+            z-index: 1000;
         }
         .navbar-brand {
             font-weight: 600;
             letter-spacing: 2px;
             font-size: 1.2rem;
-            color: white !important;
         }
         .navbar-nav .nav-link {
             color: rgba(255,255,255,0.9) !important;
@@ -75,31 +71,29 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        
-        /* The Hamburger Button Styling */
         .navbar-toggler {
             border: none;
+            color: white;
             padding: 0;
         }
         .navbar-toggler:focus {
-            box-shadow: none; /* Removes blue outline */
+            box-shadow: none;
         }
-
         .navbar-collapse {
             background: rgba(0,0,0,0.95);
             border-radius: 0 0 10px 10px;
             padding-bottom: 20px;
-            margin-top: 10px;
         }
         @media (min-width: 768px) {
-            .navbar-collapse { background: transparent; padding-bottom: 0; margin-top: 0; }
+            .navbar-collapse { background: transparent; padding-bottom: 0; }
         }
 
-        /* --- 4. HERO SECTION --- */
+        /* --- HERO SECTION --- */
         .hero {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: 100vh; /* Fallback */
+            height: 100dvh; /* Dynamic height for mobile browsers */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -113,7 +107,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.6;
+            opacity: 0.6; 
         }
         .hero::after {
             content: "";
@@ -142,9 +136,9 @@
         .hero.animate p { animation: textUp 1.6s ease forwards; animation-delay: 0.35s; }
         @keyframes textUp { to { opacity: 1; transform: translateY(0); } }
 
-        /* --- 5. CONTENT CARDS --- */
+        /* --- CARDS --- */
         section {
-            min-height: 100vh;
+            min-height: 80vh; /* Reduced slightly to prevent excessive empty scrolling */
             display: flex;
             align-items: center;
             justify-content: center;
@@ -165,7 +159,7 @@
         .custom-card.reveal { opacity: 1; transform: translateY(0) scale(1); }
         .custom-card h2 { color: #000; margin-bottom: 20px; font-weight: 600; }
 
-        /* --- 6. WHATSAPP BTN --- */
+        /* --- WHATSAPP BUTTON --- */
         .whatsapp-btn {
             display: inline-flex;
             align-items: center;
@@ -182,19 +176,26 @@
         }
         .whatsapp-btn:hover { background: #a8d65a; color: #000; transform: scale(1.05); }
 
-        /* --- 7. GALLERY --- */
+        /* --- GALLERY --- */
         .gallery-section {
             background: #000;
             overflow: hidden;
             flex-direction: column;
+            padding: 50px 0;
         }
         .gallery-track {
             display: flex;
             gap: 20px;
-            animation: scrollGallery 25s linear infinite;
+            /* We will scroll -50% because JS will duplicate the images */
+            animation: scrollGallery 40s linear infinite;
             width: max-content;
         }
-        .gallery-section.paused .gallery-track { animation-play-state: paused !important; }
+        /* Pause on Hover AND when class 'paused' is added */
+        .gallery-track:hover,
+        .gallery-section.paused .gallery-track { 
+            animation-play-state: paused !important; 
+        }
+        
         .gallery-track img {
             height: 40vh;
             max-height: 400px;
@@ -204,16 +205,17 @@
             transition: 0.3s;
         }
         .gallery-track img:hover { filter: brightness(0.8); }
+        
         @keyframes scrollGallery {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
+            100% { transform: translateX(-50%); } /* Changed from -100% for smooth loop */
         }
 
-        /* --- 8. FOOTER --- */
+        /* --- FOOTER --- */
         .footer {
             background: #000;
             position: relative;
-            min-height: 80vh;
+            min-height: 60vh;
             display: flex;
             flex-direction: column;
         }
@@ -225,20 +227,19 @@
             justify-content: center;
             z-index: 1;
         }
-        .footer-logo img{
-            width:100%;
-            height:100%;
-            object-fit:contain;
-            object-position:center;
-            opacity:0.75;
-            filter: brightness(1.4) contrast(1.05);
+        .footer-logo img {
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            object-fit: contain;
+            opacity: 0.75;
+            filter: grayscale(100%) brightness(1.4);
         }
-
         .footer::after {
             content: "";
             position: absolute;
             inset: 0;
-            background:rgba(0,0,0,.45);
+            background: rgba(0, 0, 0, 0.45);
             z-index: 2;
         }
         .footer-content {
@@ -248,10 +249,12 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding-bottom: 150px; /* Space for FAB */
+            padding-bottom: 120px;
             text-align: center;
         }
-        .socials { margin-bottom: 30px; }
+        .socials {
+            margin-bottom: 30px;
+        }
         .socials a {
             color: #fff;
             font-size: 28px;
@@ -268,7 +271,65 @@
             letter-spacing: 1px;
         }
 
-        /* --- 9. POPUP --- */
+        /* --- FLOATING ACTION BUTTON --- */
+        .call-bot {
+            position: fixed;
+            bottom: 30px;
+            right: 25px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .call-main {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 26px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s, 
+        }
+        .call-bot.active .call-main { 
+            transform: rotate(45deg); 
+            background: #ff5f5f;
+        }
+        .call-menu {
+            position: absolute;
+            bottom: 70px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .call-bot.active .call-menu { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .call-menu a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s;
+        }
+        .call-menu a:active { transform: scale(0.9); }
+        .call-menu a.phone { background: #fff; color: #000; }
+        .call-menu a.insta { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .call-menu a.whatsapp { background: #25D366; }
+
+        /* --- POPUP --- */
         .image-popup {
             position: fixed;
             inset: 0;
@@ -284,83 +345,6 @@
             border-radius: 12px;
             box-shadow: 0 0 20px rgba(255,255,255,0.1);
         }
-
-        /* --- 10. NEW COLORED FAB WRAPPER --- */
-        .fab-wrapper {
-            position: fixed;
-            bottom: 30px;
-            right: 25px;
-            z-index: 10000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* The Main Toggle Button */
-        .fab-toggle {
-            width: 65px;
-            height: 65px;
-            background-color: #25D366; /* Default Green */
-            border-radius: 50%;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            font-size: 28px;
-            color: white;
-        }
-
-        /* Toggle Icons */
-        .fab-toggle .icon-close { display: none; }
-        .fab-toggle .icon-open { display: block; }
-
-        /* ACTIVE STATE (When Clicked) -> TURNS RED */
-        .fab-wrapper.active .fab-toggle {
-            background-color: #FF5252; /* Red X Background */
-            transform: rotate(180deg);
-        }
-        .fab-wrapper.active .fab-toggle .icon-open { display: none; }
-        .fab-wrapper.active .fab-toggle .icon-close { display: block; }
-
-        /* The Menu (Hidden initially) */
-        .fab-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(20px);
-            transition: all 0.3s ease;
-        }
-        .fab-wrapper.active .fab-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Menu Items */
-        .fab-item {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            font-size: 24px;
-            transition: transform 0.2s;
-        }
-        .fab-item:active { transform: scale(0.9); }
-
-        /* SPECIFIC COLORS (Matches your Screenshot) */
-        .fab-item.phone { background-color: #ffffff; color: #000000; }
-        .fab-item.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); color: #ffffff; }
-        .fab-item.whatsapp { background-color: #25D366; color: #ffffff; }
-
     </style>
 </head>
 
@@ -370,12 +354,12 @@
         <img src="footer-bg.png.jpeg" alt="Intro Logo">
     </div>
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+    <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
-            <a class="navbar-brand d-md-none" href="#">SAPPHIRE INKS</a>
+            <a class="navbar-brand d-md-none text-white" href="#">SAPPHIRE INKS</a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
+                <i class="fas fa-bars text-white" style="font-size: 24px;"></i>
             </button>
             
             <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
@@ -390,6 +374,9 @@
     </nav>
 
     <section id="s1" class="hero">
+        <video autoplay muted loop playsinline poster="https://placehold.co/1920x1080/111/333?text=Video+Loading...">
+            <source src="hero-video.mp4" type="video/mp4">
+        </video>
         <div class="hero-content container">
             <h1>The Vision of Professional</h1>
             <p>Where precision meets artistic identity</p>
@@ -413,9 +400,9 @@
     </section>
 
     <section id="s3" class="gallery-section reveal-on-scroll">
+        <h2 class="text-center text-white mb-5">Tattoo Gallery</h2>
         <div class="container-fluid p-0">
-            <h2 class="text-center text-white mb-5">Tattoo Gallery</h2>
-            <div class="gallery-track">
+            <div class="gallery-track" id="galleryTrack">
                 <img src="angry-wolf-black-grey.jpg.webp" alt="Tattoo 1">
                 <img src="animal-totem-stack.jpg.webp" alt="Tattoo 2">
                 <img src="owl-eyes-realism.jpg.webp" alt="Tattoo 3">
@@ -424,6 +411,7 @@
                 <img src="roaring-lion-safari.jpg.webp" alt="Tattoo 6">
                 <img src="skull-clock-realism.jpg.webp" alt="Tattoo 7">
                 <img src="wolf-woman-forest.jpg.webp" alt="Tattoo 8">
+          
             </div>
         </div>
     </section>
@@ -440,6 +428,7 @@
                             Every line is thoughtfully placed, every detail refined to reflect individuality and meaning.
                             The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal.</em></strong>
                         </p>
+
                         <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
                             <i class="fab fa-whatsapp"></i> Book on Whatsapp
                         </a>
@@ -472,21 +461,14 @@
         <img id="popupImg" src="" alt="Zoomed Tattoo">
     </div>
 
-    <div class="fab-wrapper" id="fabWrapper">
-        <div class="fab-menu">
-            <a href="tel:+917888673719" class="fab-item phone">
-                <i class="fas fa-phone-alt"></i>
-            </a>
-            <a href="https://www.instagram.com/sapphire_inkz" target="_blank" class="fab-item instagram">
-                <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/917888673719" target="_blank" class="fab-item whatsapp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+    <div class="call-bot" id="callBot">
+        <div class="call-menu">
+            <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
+            <a class="insta" href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="whatsapp" href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <div class="fab-toggle" id="fabToggle">
-            <i class="fas fa-comments icon-open"></i>
-            <i class="fas fa-times icon-close"></i>
+        <div class="call-main">
+            <i class="fas fa-plus"></i>
         </div>
     </div>
 
@@ -495,9 +477,12 @@
         /* 1. Intro Animation Removal */
         setTimeout(() => {
             const intro = document.getElementById('intro');
-            if (intro) intro.classList.add("hide");
-            document.body.style.overflowY = "auto";
-            document.querySelector(".hero").classList.add("animate");
+            if (intro) {
+                intro.classList.add("hide");
+                // Enable scrolling only after intro finishes
+                document.body.style.overflowY = "auto";
+                document.querySelector(".hero").classList.add("animate");
+            }
         }, 3500);
 
         /* 2. Scroll Reveal */
@@ -509,47 +494,58 @@
         }, { threshold: 0.15 });
         revealItems.forEach(i => observer.observe(i));
 
-        /* 3. Gallery Logic */
-        const gallery = document.querySelector(".gallery-section");
-        const imgs = document.querySelectorAll(".gallery-track img");
-        const popup = document.getElementById("imagePopup");
-        const popupImg = document.getElementById("popupImg");
+        /* 3. Seamless Gallery Loop Logic */
+        const galleryTrack = document.getElementById("galleryTrack");
+        // Clone images to ensure seamless loop
+        if(galleryTrack) {
+            const galleryContent = galleryTrack.innerHTML;
+            galleryTrack.innerHTML = galleryContent + galleryContent; // Duplicate content
+            
+            // Re-select images including clones for popup logic
+            const imgs = document.querySelectorAll(".gallery-track img");
+            const gallerySection = document.querySelector(".gallery-section");
+            const popup = document.getElementById("imagePopup");
+            const popupImg = document.getElementById("popupImg");
 
-        imgs.forEach(img => {
-            img.onclick = () => {
-                gallery.classList.add("paused");
-                popup.style.display = "flex";
-                popupImg.src = img.src;
-            };
-        });
-        popup.onclick = () => {
-            popup.style.display = "none";
-            gallery.classList.remove("paused");
-        };
-
-        /* 4. NEW FAB TOGGLE LOGIC */
-        const fabWrapper = document.getElementById("fabWrapper");
-        const fabToggle = document.getElementById("fabToggle");
-
-        if (fabWrapper && fabToggle) {
-            fabToggle.addEventListener("click", (e) => {
-                e.stopPropagation();
-                fabWrapper.classList.toggle("active");
+            imgs.forEach(img => {
+                img.onclick = () => {
+                    gallerySection.classList.add("paused");
+                    popup.style.display = "flex";
+                    popupImg.src = img.src;
+                };
             });
+            popup.onclick = () => {
+                popup.style.display = "none";
+                gallerySection.classList.remove("paused");
+            };
+        }
 
-            document.addEventListener("click", (e) => {
-                if (!fabWrapper.contains(e.target)) {
-                    fabWrapper.classList.remove("active");
+        /* 4. Call Bot Toggle */
+        const callBot = document.getElementById("callBot");
+        const callMain = document.querySelector(".call-main");
+
+        if (callBot && callMain) {
+            callMain.addEventListener("click", function(e) {
+                e.stopPropagation();
+                callBot.classList.toggle("active");
+            });
+            document.addEventListener("click", function(e) {
+                if (!callBot.contains(e.target)) {
+                    callBot.classList.remove("active");
                 }
             });
         }
         
-        /* 5. Auto-close Nav */
+        /* 5. Auto-close Nav (Improved for Bootstrap 5) */
         const navLinks = document.querySelectorAll('.nav-link');
         const menuToggle = document.getElementById('navbarNav');
-        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false});
         navLinks.forEach((l) => {
-            l.addEventListener('click', () => { if(menuToggle.classList.contains('show')) bsCollapse.toggle(); });
+            l.addEventListener('click', () => {
+                const bsCollapse = bootstrap.Collapse.getInstance(menuToggle);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
+            });
         });
     </script>
 </body>
