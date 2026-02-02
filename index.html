@@ -1,488 +1,501 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tattoo Studio | Vision of Professional</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tattoo Studio | Vision of Professional</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-/* --- RESET & BASIC --- */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Poppins, Arial, sans-serif;
-}
-html,body{
-  height:100%;
-  background:black;
-  overflow-x:hidden; /* Prevent horizontal scroll */
-}
+    <style>
+        /* --- CUSTOM STYLE OVERRIDES --- */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: black;
+            color: white;
+            overflow-x: hidden;
+        }
 
-/* --- INTRO ANIMATION --- */
-.intro{
-  position:fixed;
-  inset:0;
-  background:#000;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.intro img{
-  width:70%;
-  max-width:900px;
-  opacity:0;
-  animation:introFade 3.5s ease forwards;
-}
-@keyframes introFade{
-  0%{opacity:0}
-  30%{opacity:1}
-  70%{opacity:1}
-  100%{opacity:0}
-}
-.intro.hide{display:none}
+        /* --- INTRO ANIMATION --- */
+        .intro {
+            position: fixed;
+            inset: 0;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .intro img {
+            width: 70%;
+            max-width: 900px;
+            opacity: 0;
+            animation: introFade 3.5s ease forwards;
+        }
+        @keyframes introFade {
+            0% { opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .intro.hide { display: none; }
 
-/* --- NAVIGATION --- */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  height:70px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  z-index:1000;
-  background: rgba(0,0,0,0.5); /* Slight tint for readability */
-  backdrop-filter: blur(5px);
-}
-nav ul{
-  list-style:none;
-  display:flex;
-  gap:30px;
-}
-nav a{
-  color:#fff;
-  text-decoration:none;
-  font-size:15px;
-  opacity:.9;
-}
+        /* --- NAVIGATION (BOOTSTRAP CUSTOMIZATION) --- */
+        .navbar {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            transition: all 0.3s;
+        }
+        .navbar-nav .nav-link {
+            color: rgba(255,255,255,0.9) !important;
+            font-size: 15px;
+            margin: 0 15px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .navbar-toggler {
+            border: none;
+            color: white;
+        }
+        .navbar-collapse {
+            background: rgba(0,0,0,0.9); /* Dark background for mobile menu */
+            border-radius: 0 0 10px 10px;
+        }
+        @media (min-width: 768px) {
+            .navbar-collapse { background: transparent; }
+        }
 
-/* --- HERO SECTION --- */
-.hero{
-  position:relative;
-  width:100%;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  color:#fff;
-  overflow:hidden;
-}
-.hero video{
-  position:absolute;
-  inset:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.72);
-}
-.hero-content{position:relative;z-index:2;padding:0 20px;}
-.hero h1{
-  font-size:50px;
-  font-weight:600;
-  opacity:0;
-  transform:translateY(40px);
-}
-.hero p{
-  margin-top:12px;
-  font-size:16px;
-  opacity:0;
-  transform:translateY(40px);
-}
-.hero.animate h1{animation:textUp 1.6s ease forwards;}
-.hero.animate p{animation:textUp 1.6s ease forwards;animation-delay:.35s;}
-@keyframes textUp{to{opacity:1;transform:translateY(0)}}
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        .hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.72);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem); /* Responsive Font Size */
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero p {
+            font-size: 1.1rem;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        .hero.animate h1 { animation: textUp 1.6s ease forwards; }
+        .hero.animate p { animation: textUp 1.6s ease forwards; animation-delay: 0.35s; }
+        @keyframes textUp { to { opacity: 1; transform: translateY(0); } }
 
-/* --- GENERAL SECTION STYLES --- */
-section{
-  min-height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px 20px;
-}
+        /* --- CONTENT CARDS --- */
+        section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 0;
+        }
+        .custom-card {
+            background: #fff;
+            color: #5a5858;
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+            transform: translateY(60px) scale(0.96);
+            opacity: 0;
+            transition: 0.6s ease;
+            width: 100%;
+        }
+        .custom-card.reveal { opacity: 1; transform: translateY(0) scale(1); }
+        .custom-card h2 { color: #000; margin-bottom: 20px; font-weight: 600; }
+        
+        /* --- WHATSAPP BUTTON --- */
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 12px 30px;
+            background: #bfe67b;
+            color: #000;
+            font-size: 18px;
+            font-weight: 500;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: 0.3s ease;
+        }
+        .whatsapp-btn:hover { background: #a8d65a; color: #000; transform: scale(1.05); }
 
-/* --- CARDS --- */
-.card{
-  background:#fff;
-  color:#5a5858;
-  max-width:900px;
-  padding:50px;
-  border-radius:16px;
-  text-align:center;
-  box-shadow:0 30px 80px rgba(0,0,0,.25);
-  transform:translateY(60px) scale(.96);
-  opacity:0;
-  transition:.6s ease;
-  width: 100%;
-}
-.card.reveal{opacity:1;transform:translateY(0) scale(1);}
-h2{color:#000; margin-bottom: 20px;}
+        /* --- GALLERY --- */
+        .gallery-section {
+            background: #000;
+            overflow: hidden;
+            flex-direction: column;
+        }
+        .gallery-track {
+            display: flex;
+            gap: 20px;
+            animation: scrollGallery 20s linear infinite;
+            width: max-content; /* Ensure container fits images */
+        }
+        .gallery-section.paused .gallery-track { animation-play-state: paused !important; }
+        .gallery-track img {
+            height: 50vh;
+            max-height: 400px;
+            width: auto;
+            border-radius: 12px;
+            cursor: pointer;
+            object-fit: cover;
+            transition: 0.3s;
+        }
+        .gallery-track img:hover { filter: brightness(0.8); }
+        
+        @keyframes scrollGallery {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); } /* Ensure logic handles infinite scroll properly or duplicate images */
+        }
+        /* Mobile tweak for gallery height */
+        @media(max-width: 768px){
+            .gallery-track img { height: 35vh; }
+        }
 
-/* --- WHATSAPP BUTTON --- */
-.whatsapp-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  margin:30px auto 0;
-  padding:14px 30px;
-  background:#bfe67b;
-  color:#000;
-  font-size:18px;
-  font-weight:500;
-  border-radius:14px;
-  text-decoration:none;
-  transition:.3s ease;
-}
+        /* --- FOOTER --- */
+        .footer {
+            background: #000;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-logo {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+        .footer-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0.6;
+            filter: brightness(1.4) contrast(1.05);
+        }
+        .footer::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+        .footer-content {
+            position: relative;
+            z-index: 3;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding-bottom: 80px;
+            text-align: center;
+        }
+        .socials a {
+            color: #fff;
+            font-size: 24px;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        .socials a:hover { color: #bfe67b; }
+        .footer-links span {
+            margin: 0 10px;
+            font-size: 14px;
+            color: #ddd;
+        }
 
-/* --- GALLERY --- */
-.gallery{
-  background:#000;
-  flex-direction:column;
-  padding: 40px 0;
-  overflow:hidden;
-}
-.gallery-title{
-  color:#fff;
-  font-size:36px;
-  margin-bottom:40px;
-  text-align: center;
-}
-.gallery-track{
-  display:flex;
-  gap:20px;
-  animation:scrollGallery 18s linear infinite;
-}
-.gallery.paused .gallery-track{
-  animation-play-state:paused !important;
-}
-.gallery img{
-  height:50vh;
-  border-radius:12px;
-  cursor:pointer;
-  object-fit: cover;
-}
-@keyframes scrollGallery{
-  0%{transform:translateX(0)}
-  100%{transform:translateX(-100%)}
-}
+        /* --- FLOATING ACTION BUTTON --- */
+        .call-bot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .call-main {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #25D366;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 28px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s;
+        }
+        .call-bot.active .call-main { transform: rotate(45deg); }
+        .call-menu {
+            position: absolute;
+            bottom: 70px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+        .call-bot.active .call-menu { opacity: 1; pointer-events: auto; transform: translateY(0); }
+        .call-menu a {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 22px;
+            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .call-menu a.phone { background: #fff; color: #000; }
+        .call-menu a.insta { background: #E1306C; }
+        .call-menu a.whatsapp { background: #25D366; }
 
-/* --- FOOTER --- */
-.footer{
-  background:#000;
-  position:relative;
-  display: flex;
-  flex-direction: column;
-  min-height: 80vh; /* Better for mobile */
-}
-.footer-logo{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index: 1;
-}
-.footer-logo img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  opacity:0.6;
-  filter: brightness(1.4) contrast(1.05);
-}
-.footer::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.5);
-  z-index: 2;
-}
-.footer-content{
-  position:relative;
-  z-index:3;
-  flex: 1;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-end;
-  padding: 40px 20px 100px; /* Padding bottom for scroll space */
-  color:#f3efef;
-  text-align: center;
-}
-.socials{
-  display:flex;
-  justify-content:center;
-  gap:30px;
-  margin-bottom:30px;
-}
-.socials a{color:#fff;font-size:24px;}
-.footer-links{
-  display:flex;
-  justify-content:center;
-  flex-wrap: wrap;
-  gap:20px;
-  font-size: 14px;
-}
-
-/* --- FLOATING ACTION BUTTON (FIXED) --- */
-.call-bot{
-  position:fixed;
-  bottom:30px;
-  right:30px;
-  z-index:10000;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.call-main{
-  width:60px;
-  height:60px;
-  border-radius:50%;
-  background:#25D366; /* WhatsApp Green */
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:28px;
-  cursor:pointer;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-  transition: transform 0.3s;
-}
-.call-bot.active .call-main{
-  transform: rotate(45deg); /* Turns plus to X */
-}
-
-.call-menu{
-  position:absolute;
-  bottom:70px; /* Sits above main button */
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-  opacity:0;
-  pointer-events:none;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-}
-.call-bot.active .call-menu{
-  opacity:1;
-  pointer-events:auto;
-  transform: translateY(0);
-}
-
-.call-menu a{
-  width:50px;
-  height:50px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:#fff;
-  font-size:22px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
-
-/* --- BUTTON COLORS --- */
-.call-menu a.phone{
-  background:#fff; /* FIXED: White background so it is visible */
-  color:#000;      /* Black icon */
-}
-.call-menu a.insta{
-  background:#E1306C;
-}
-.call-menu a.whatsapp{
-  background:#25D366;
-}
-
-/* --- IMAGE POPUP --- */
-.image-popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:11000;
-}
-.image-popup img{
-  max-width:95%;
-  max-height:90%;
-  border-radius:12px;
-}
-
-/* --- MOBILE RESPONSIVENESS --- */
-@media(max-width:768px){
-  .hero h1{font-size:36px;}
-  .card{padding:30px;}
-  .gallery img{height:35vh;}
-  .call-bot{bottom:20px; right:20px;}
-}
-</style>
+        /* --- POPUP --- */
+        .image-popup {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 11000;
+        }
+        .image-popup img {
+            max-width: 95%;
+            max-height: 90%;
+            border-radius: 12px;
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="intro" id="intro">
-  <img src="footer-bg.png.jpeg" alt="Intro Logo">
-</div>
-
-<nav>
-  <ul>
-    <li><a href="#s1">Home</a></li>
-    <li><a href="#s2">Art</a></li>
-    <li><a href="#s3">Gallery</a></li>
-    <li><a href="#s4">Vision</a></li>
-  </ul>
-</nav>
-
-<section id="s1" class="hero">
-  <video src="hero-video.mp4" autoplay muted loop playsinline></video>
-  <div class="hero-content">
-    <h1>The Vision of Professional</h1>
-    <p>Where precision meets artistic identity</p>
-  </div>
-</section>
-
-<section id="s2">
-  <div class="card reveal-on-scroll">
-    <h2>Art at Its Purest</h2>
-    <p><strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art.
-Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong></p>
-  </div>
-</section>
-
-<section id="s3" class="gallery reveal-on-scroll">
-  <h2 class="gallery-title">Tattoo Gallery</h2>
-  <div class="gallery-track">
-    <img src="angry-wolf-black-grey.jpg.webp">
-    <img src="wolf-woman-forest.jpg.webp">
-    <img src="skull-clock-realism.jpg.webp">
-    <img src="roaring-lion-safari.jpg.webp">
-    <img src="realistic-eagle-head.jpg.webp">
-  </div>
-</section>
-
-<section id="s4">
-  <div class="card reveal-on-scroll">
-    <h2>Our Vision</h2>
-    <p><strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art.
-As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration.
-Every line is thoughtfully placed, every detail refined to reflect individuality and meaning.
-The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal.
-Using high-quality inks and modern techniques, each piece is crafted with care and consistency.
-Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session.
-This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
-
-    <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
-      <i class="fab fa-whatsapp"></i> Book on Whatsapp
-    </a>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="footer-logo">
-    <img src="IMG_3133.JPEG">
-  </div>
-  <div class="footer-content">
-    <div class="socials">
-      <a href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="tel:+917888673719"><i class="fas fa-phone"></i></a>
-      <a href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    <div class="intro" id="intro">
+        <img src="footer-bg.png.jpeg" alt="Intro Logo" class="img-fluid">
     </div>
-    <div class="footer-links">
-      <span>Home</span>
-      <span>Academy</span>
-      <span>Team</span>
-      <span>Sapphire Inks</span>
+
+    <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+            <a class="navbar-brand d-md-none text-white" href="#">SAPPHIRE INKS</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="fa fa-bars"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                <ul class="navbar-nav text-center">
+                    <li class="nav-item"><a class="nav-link" href="#s1">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#s2">Art</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#s3">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#s4">Vision</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="s1" class="hero">
+        <video src="hero-video.mp4" autoplay muted loop playsinline></video>
+        <div class="hero-content container">
+            <h1>The Vision of Professional</h1>
+            <p>Where precision meets artistic identity</p>
+        </div>
+    </section>
+
+    <section id="s2">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="custom-card reveal-on-scroll">
+                        <h2>Art at Its Purest</h2>
+                        <p class="lead" style="font-size: 1rem; line-height: 1.8;">
+                            <strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art.
+                            Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="s3" class="gallery-section reveal-on-scroll">
+        <div class="container-fluid p-0">
+            <h2 class="text-center text-white mb-5">Tattoo Gallery</h2>
+            <div class="gallery-track">
+                <img src="angry-wolf-black-grey.jpg.webp" alt="Tattoo 1">
+                <img src="wolf-woman-forest.jpg.webp" alt="Tattoo 2">
+                <img src="skull-clock-realism.jpg.webp" alt="Tattoo 3">
+                <img src="roaring-lion-safari.jpg.webp" alt="Tattoo 4">
+                <img src="realistic-eagle-head.jpg.webp" alt="Tattoo 5">
+                <img src="angry-wolf-black-grey.jpg.webp" alt="Tattoo 1">
+                <img src="wolf-woman-forest.jpg.webp" alt="Tattoo 2">
+                <img src="skull-clock-realism.jpg.webp" alt="Tattoo 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="s4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="custom-card reveal-on-scroll">
+                        <h2>Our Vision</h2>
+                        <p class="lead" style="font-size: 1rem; line-height: 1.8;">
+                            <strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art.
+                            As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration.
+                            Every line is thoughtfully placed, every detail refined to reflect individuality and meaning.
+                            The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal.
+                            Using high-quality inks and modern techniques, each piece is crafted with care and consistency.
+                            Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session.
+                            This is not just the start of a journey — it’s the foundation of something enduring.</em></strong>
+                        </p>
+
+                        <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
+                            <i class="fab fa-whatsapp"></i> Book on Whatsapp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-logo">
+            <img src="IMG_3133.JPEG" alt="Footer Background">
+        </div>
+        <div class="footer-content container">
+            <div class="socials mb-4">
+                <a href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="tel:+917888673719"><i class="fas fa-phone"></i></a>
+                <a href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div class="footer-links d-flex justify-content-center flex-wrap gap-3">
+                <span>Home</span>
+                <span>Academy</span>
+                <span>Team</span>
+                <span>Sapphire Inks</span>
+            </div>
+        </div>
+    </footer>
+
+    <div class="image-popup" id="imagePopup">
+        <img id="popupImg" src="" alt="Zoomed Tattoo">
     </div>
-  </div>
-</footer>
 
-<div class="image-popup" id="imagePopup">
-  <img id="popupImg" src="">
-</div>
+    <div class="call-bot" id="callBot">
+        <div class="call-menu">
+            <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
+            <a class="insta" href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a class="whatsapp" href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="call-main"><i class="fas fa-plus"></i></div>
+    </div>
 
-<div class="call-bot" id="callBot">
-  <div class="call-menu">
-    <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
-    <a class="insta" href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a class="whatsapp" href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  <div class="call-main"><i class="fas fa-plus"></i></div>
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<script>
-/* 1. Intro Animation Removal */
-setTimeout(()=>{
-  const intro = document.getElementById('intro');
-  if(intro) intro.classList.add("hide");
-  document.body.style.overflowY="auto"; /* Re-enable scroll */
-  document.querySelector(".hero").classList.add("animate");
-},3500);
+    <script>
+        /* 1. Intro Animation Removal */
+        setTimeout(() => {
+            const intro = document.getElementById('intro');
+            if (intro) intro.classList.add("hide");
+            document.body.style.overflowY = "auto";
+            document.querySelector(".hero").classList.add("animate");
+        }, 3500);
 
-/* 2. Scroll Reveal Animation */
-const revealItems=document.querySelectorAll(".reveal-on-scroll");
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting) entry.target.classList.add("reveal");
-  });
-},{threshold:.15});
-revealItems.forEach(i=>observer.observe(i));
+        /* 2. Scroll Reveal Animation */
+        const revealItems = document.querySelectorAll(".reveal-on-scroll");
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add("reveal");
+            });
+        }, { threshold: 0.15 });
+        revealItems.forEach(i => observer.observe(i));
 
-/* 3. Gallery Logic */
-const gallery=document.querySelector(".gallery");
-const imgs=document.querySelectorAll(".gallery img");
-const popup=document.getElementById("imagePopup");
-const popupImg=document.getElementById("popupImg");
+        /* 3. Gallery Logic */
+        const gallery = document.querySelector(".gallery-section");
+        const imgs = document.querySelectorAll(".gallery-track img");
+        const popup = document.getElementById("imagePopup");
+        const popupImg = document.getElementById("popupImg");
 
-imgs.forEach(img=>{
-  img.onclick=()=>{
-    gallery.classList.add("paused");
-    popup.style.display="flex";
-    popupImg.src=img.src;
-  };
-});
-popup.onclick=()=>{
-  popup.style.display="none";
-  gallery.classList.remove("paused");
-};
+        imgs.forEach(img => {
+            img.onclick = () => {
+                gallery.classList.add("paused");
+                popup.style.display = "flex";
+                popupImg.src = img.src;
+            };
+        });
+        popup.onclick = () => {
+            popup.style.display = "none";
+            gallery.classList.remove("paused");
+        };
 
-/* 4. Call Bot Toggle Logic */
-const callBot = document.getElementById("callBot");
-const callMain = document.querySelector(".call-main");
+        /* 4. Call Bot Toggle Logic */
+        const callBot = document.getElementById("callBot");
+        const callMain = document.querySelector(".call-main");
 
-if(callBot && callMain) {
-    callMain.addEventListener("click", function(e) {
-        e.stopPropagation(); // Prevent immediate closing if clicking body
-        callBot.classList.toggle("active");
-    });
-    
-    // Close menu when clicking anywhere else on the page
-    document.addEventListener("click", function(e) {
-        if (!callBot.contains(e.target)) {
-            callBot.classList.remove("active");
+        if (callBot && callMain) {
+            callMain.addEventListener("click", function(e) {
+                e.stopPropagation();
+                callBot.classList.toggle("active");
+            });
+            document.addEventListener("click", function(e) {
+                if (!callBot.contains(e.target)) {
+                    callBot.classList.remove("active");
+                }
+            });
         }
-    });
-}
-</script>
-
+        
+        /* 5. Auto-close Mobile Nav on click */
+        const navLinks = document.querySelectorAll('.nav-link');
+        const menuToggle = document.getElementById('navbarNav');
+        const bsCollapse = new bootstrap.Collapse(menuToggle, {toggle:false});
+        navLinks.forEach((l) => {
+            l.addEventListener('click', () => { if(menuToggle.classList.contains('show')) bsCollapse.toggle(); });
+        });
+    </script>
 </body>
 </html>
