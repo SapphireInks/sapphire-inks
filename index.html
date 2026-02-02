@@ -162,7 +162,9 @@ h2{color:#000}
   gap:30px;
   animation:scrollGallery 18s linear infinite;
 }
-.gallery.paused .gallery-track{animation-play-state:paused;}
+.gallery.paused .gallery-track{
+  animation-play-state:paused !important;
+}
 .gallery img{
   height:70vh;
   border-radius:12px;
@@ -173,16 +175,34 @@ h2{color:#000}
   100%{transform:translateX(-50%)}
 }
 
-/* ================= FOOTER (FIXED) ================= */
+/* ================= IMAGE POPUP ================= */
+.image-popup{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.95);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+.image-popup img{
+  max-width:95%;
+  max-height:95%;
+  border-radius:12px;
+}
+
+/* ================= FOOTER ================= */
 .footer{
   background:#000;
   height:100vh;
   position:relative;
-  overflow:hidden;
 }
 .footer-logo{
   position:absolute;
   inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 .footer-logo img{
   width:100%;
@@ -223,39 +243,39 @@ h2{color:#000}
   gap:40px;
 }
 
-/* ================= CALL BOT ================= */
+/* ================= CALL BOT (FIXED) ================= */
 .call-bot{
   position:fixed;
-  bottom:25px;
-  right:25px;
-  z-index:9000;
+  bottom:20px;
+  right:20px;
+  z-index:9999;
 }
 .call-main{
-  width:60px;
-  height:60px;
+  width:64px;
+  height:64px;
   border-radius:50%;
   background:#25D366;
   display:flex;
   align-items:center;
   justify-content:center;
   color:#fff;
-  font-size:24px;
+  font-size:26px;
   cursor:pointer;
 }
 .call-menu{
   position:absolute;
-  bottom:75px;
+  bottom:80px;
   right:0;
   display:flex;
   flex-direction:column;
-  gap:12px;
+  gap:14px;
   opacity:0;
   pointer-events:none;
   transition:.3s ease;
 }
 .call-menu a{
-  width:50px;
-  height:50px;
+  width:52px;
+  height:52px;
   border-radius:50%;
   display:flex;
   align-items:center;
@@ -272,10 +292,7 @@ h2{color:#000}
 }
 
 @media(max-width:768px){
-  .hero h1{font-size:36px}
-  section{padding:40px}
-  .gallery img{height:55vh}
-  .whatsapp-btn{font-size:18px;padding:14px 28px;}
+  .call-main{width:58px;height:58px;font-size:24px}
 }
 </style>
 </head>
@@ -307,7 +324,8 @@ h2{color:#000}
 <section id="s2">
   <div class="card reveal-on-scroll">
     <h2>Art at Its Purest</h2>
-    <p><strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art. Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong></p>
+    <p><strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art.
+Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong></p>
   </div>
 </section>
 
@@ -325,7 +343,14 @@ h2{color:#000}
 <section id="s4">
   <div class="card reveal-on-scroll">
     <h2>Our Vision</h2>
-    <p><strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art. As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration. Every line is thoughtfully placed, every detail refined to reflect individuality and meaning. The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal. Using high-quality inks and modern techniques, each piece is crafted with care and consistency. Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session. This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
+    <p><strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art.
+As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration.
+Every line is thoughtfully placed, every detail refined to reflect individuality and meaning.
+The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal.
+Using high-quality inks and modern techniques, each piece is crafted with care and consistency.
+Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session.
+This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
+
     <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
       <i class="fab fa-whatsapp"></i> Book on Whatsapp
     </a>
@@ -334,16 +359,14 @@ h2{color:#000}
 
 <footer class="footer">
   <div class="footer-logo">
-    <img src="IMG_3133.JPEG" alt="Sapphire Inks Logo">
+    <img src="IMG_3133.JPEG">
   </div>
-
   <div class="footer-content">
     <div class="socials">
-      <a href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.instagram.com/sapphire_inkz?igsh=MWVvemo4bndoaDVvdg%3D%3D&utm_source=qr" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="tel:+917888673719"><i class="fas fa-phone"></i></a>
       <a href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
-
     <div class="footer-links">
       <span>Home</span>
       <span>Academy</span>
@@ -353,6 +376,19 @@ h2{color:#000}
   </div>
 </footer>
 
+<div class="image-popup" id="imagePopup">
+  <img id="popupImg">
+</div>
+
+<div class="call-bot" id="callBot">
+  <div class="call-menu">
+    <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
+    <a class="insta" href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a class="whatsapp" href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
+  </div>
+  <div class="call-main"><i class="fas fa-plus"></i></div>
+</div>
+
 <script>
 setTimeout(()=>{
   intro.classList.add("hide");
@@ -360,6 +396,7 @@ setTimeout(()=>{
   document.querySelector(".hero").classList.add("animate");
 },3500);
 
+/* Reveal */
 const revealItems=document.querySelectorAll(".reveal-on-scroll");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -368,6 +405,25 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:.4});
 revealItems.forEach(i=>observer.observe(i));
 
+/* Gallery popup + pause */
+const gallery=document.querySelector(".gallery");
+const imgs=document.querySelectorAll(".gallery img");
+const popup=document.getElementById("imagePopup");
+const popupImg=document.getElementById("popupImg");
+
+imgs.forEach(img=>{
+  img.onclick=()=>{
+    gallery.classList.add("paused");
+    popup.style.display="flex";
+    popupImg.src=img.src;
+  };
+});
+popup.onclick=()=>{
+  popup.style.display="none";
+  gallery.classList.remove("paused");
+};
+
+/* Call bot */
 callBot.onclick=()=>callBot.classList.toggle("active");
 </script>
 
