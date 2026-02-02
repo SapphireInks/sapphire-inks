@@ -124,18 +124,16 @@ section{
   transition:.6s ease;
 }
 .card.reveal{opacity:1;transform:translateY(0) scale(1);}
-h2{
-  color: #000;
-}
+h2{color:#000}
 
-/* ================= WHATSAPP BUTTON (UPDATED) ================= */
+/* ================= WHATSAPP BUTTON ================= */
 .whatsapp-btn{
   display:inline-flex;
   align-items:center;
   gap:12px;
   margin:40px auto 0;
   padding:16px 36px;
-  background:#bfe67b;           /* soft light green */
+  background:#bfe67b;
   color:#000;
   font-size:20px;
   font-weight:500;
@@ -143,11 +141,6 @@ h2{
   text-decoration:none;
   transition:.3s ease;
 }
-
-.whatsapp-btn i{
-  font-size:22px;
-}
-
 .whatsapp-btn:hover{
   transform:translateY(-2px);
   box-shadow:0 12px 30px rgba(0,0,0,.2);
@@ -169,9 +162,7 @@ h2{
   gap:30px;
   animation:scrollGallery 18s linear infinite;
 }
-.gallery.paused .gallery-track{
-  animation-play-state:paused;
-}
+.gallery.paused .gallery-track{animation-play-state:paused;}
 .gallery img{
   height:70vh;
   border-radius:12px;
@@ -182,46 +173,33 @@ h2{
   100%{transform:translateX(-50%)}
 }
 
-/* ================= IMAGE POPUP ================= */
-.image-popup{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.95);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:10000;
-}
-.image-popup img{
-  max-width:95%;
-  max-height:95%;
-  border-radius:12px;
-}
-
-/* ================= FOOTER ================= */
+/* ================= FOOTER (FIXED) ================= */
 .footer{
   background:#000;
   height:100vh;
   position:relative;
+  overflow:hidden;
 }
 .footer-logo{
   position:absolute;
   inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
 }
 .footer-logo img{
-  width:70%;
-  max-width:900px;
-  opacity:.5;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  object-position:center;
+  opacity:0.75;
+  filter: brightness(1.4) contrast(1.05);
 }
+
 .footer::after{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.7);
+  background:rgba(0,0,0,.45);
 }
+
 .footer-content{
   position:relative;
   z-index:2;
@@ -329,8 +307,7 @@ h2{
 <section id="s2">
   <div class="card reveal-on-scroll">
     <h2>Art at Its Purest</h2>
-    <p><strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art.
-Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong></p>
+    <p><strong><em>Welcome to Sapphire Inks, where tattoos go beyond skin — they become timeless art. Each piece is a journey, delicately created with passion, vision, and flawless detail. At Sapphire Inks, every session is an immersive artistic experience. Under the expertise of Sapphire, recognized at the Lifestyle Tattoo International Convention and showcased on MTV’s Ace of Space, your story is transformed into refined, elegant body art that lasts forever.</em></strong></p>
   </div>
 </section>
 
@@ -348,38 +325,23 @@ Each piece is a journey, delicately created with passion, vision, and flawless d
 <section id="s4">
   <div class="card reveal-on-scroll">
     <h2>Our Vision</h2>
-    <p><strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art.
-As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration.
-Every line is thoughtfully placed, every detail refined to reflect individuality and meaning.
-The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal.
-Using high-quality inks and modern techniques, each piece is crafted with care and consistency.
-Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session.
-This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
-
-    <!-- UPDATED BUTTON -->
+    <p><strong><em>At Sapphire Inks, every tattoo begins with intention, patience, and respect for the art. As a rising artist shaped by passion and dedication, Sapphire approaches each design as a personal collaboration. Every line is thoughtfully placed, every detail refined to reflect individuality and meaning. The focus is not speed, but precision — creating tattoos that feel timeless and deeply personal. Using high-quality inks and modern techniques, each piece is crafted with care and consistency. Sapphire Inks is a space where ideas are nurtured, creativity flows freely, and art evolves with every session. This is not just the start of a journey — it’s the foundation of something enduring.</em></strong></p>
     <a href="https://wa.me/917888673719" target="_blank" class="whatsapp-btn">
       <i class="fab fa-whatsapp"></i> Book on Whatsapp
     </a>
   </div>
 </section>
+
 <footer class="footer">
   <div class="footer-logo">
-    <img src="footer-bg.png.jpeg">
+    <img src="IMG_3133.JPEG" alt="Sapphire Inks Logo">
   </div>
+
   <div class="footer-content">
     <div class="socials">
-      <!-- ✅ REQUIRED CHANGES ONLY -->
-      <a href="https://www.instagram.com/sapphire_inkz?igsh=MWVvemo4bndoaDVvdg%3D%3D&utm_source=qr" target="_blank">
-        <i class="fab fa-instagram"></i>
-      </a>
-
-      <a href="tel:+917888673719">
-        <i class="fas fa-phone"></i>
-      </a>
-
-      <a href="https://wa.me/917888673719" target="_blank">
-        <i class="fab fa-whatsapp"></i>
-      </a>
+      <a href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="tel:+917888673719"><i class="fas fa-phone"></i></a>
+      <a href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
     </div>
 
     <div class="footer-links">
@@ -390,20 +352,6 @@ This is not just the start of a journey — it’s the foundation of something e
     </div>
   </div>
 </footer>
-<!-- IMAGE POPUP -->
-<div class="image-popup" id="imagePopup">
-  <img id="popupImg">
-</div>
-
-<!-- CALL BOT -->
-<div class="call-bot" id="callBot">
-  <div class="call-menu">
-    <a class="phone" href="tel:+917888673719"><i class="fas fa-phone"></i></a>
-    <a class="insta" href="https://www.instagram.com/sapphire_inkz" target="_blank"><i class="fab fa-instagram"></i></a>
-    <a class="whatsapp" href="https://wa.me/917888673719" target="_blank"><i class="fab fa-whatsapp"></i></a>
-  </div>
-  <div class="call-main"><i class="fas fa-plus"></i></div>
-</div>
 
 <script>
 setTimeout(()=>{
@@ -412,7 +360,6 @@ setTimeout(()=>{
   document.querySelector(".hero").classList.add("animate");
 },3500);
 
-/* Reveal */
 const revealItems=document.querySelectorAll(".reveal-on-scroll");
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
@@ -421,25 +368,6 @@ const observer=new IntersectionObserver(entries=>{
 },{threshold:.4});
 revealItems.forEach(i=>observer.observe(i));
 
-/* Gallery popup */
-const gallery=document.querySelector(".gallery");
-const imgs=document.querySelectorAll(".gallery img");
-const popup=document.getElementById("imagePopup");
-const popupImg=document.getElementById("popupImg");
-
-imgs.forEach(img=>{
-  img.onclick=()=>{
-    gallery.classList.add("paused");
-    popup.style.display="flex";
-    popupImg.src=img.src;
-  }
-});
-popup.onclick=()=>{
-  popup.style.display="none";
-  gallery.classList.remove("paused");
-};
-
-/* Call bot */
 callBot.onclick=()=>callBot.classList.toggle("active");
 </script>
 
